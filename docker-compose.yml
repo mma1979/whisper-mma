@@ -1,0 +1,44 @@
+services:
+  minio:
+    container_name: whisper-mma-s3
+    # command: server /data --console-address ":9001"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=Abc@1234
+      - MINIO_DEFAULT_BUCKETS=whisper-mma
+    image: docker.io/bitnami/minio:latest
+    volumes:
+      - 'minio_data:/data'
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 9001:9001
+
+
+  whisper-mma:
+    tty: true
+    container_name: whisper-mma
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:80
+    working_dir: /app
+
+    volumes:
+      - ".:/app"
+    environment:
+      - "MINIO_ACCESS_KEY=admin"
+      - "MINIO_SECRET_KEY=Abc@1234"
+      - "MINIO_ENDPOINT=http://whisper-mma-s3:9000"
+      - "S3_BUCKET_NAME=whisper-mma"
+    depends_on:
+      - minio
+
+
+volumes:
+  minio_data:
+    driver: local

@@ -1,0 +1,17 @@
+# --extra-index-url https://download.pytorch.org/whl/cu118
+--extra-index-url https://download.pytorch.org/whl/cpu
+python-dotenv
+flask
+wtforms
+flask_wtf
+boto3
+minio
+wtforms
+torch
+torchaudio
+faster-whisper
+pyannote.audio
+tqdm
+sortedcontainers
+packaging
+pandas

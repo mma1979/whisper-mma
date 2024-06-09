@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h2>Upload File</h2>
+    <style>
+        .progress {
+            height: 2px;
+        }
+
+        p.file-title {
+            margin-bottom: 3px;
+        }
+
+        div#loading {
+            width: 35px;
+            height: 35px;
+            display: none;
+            background: url(/static/images/loader.gif) no-repeat;
+            cursor: wait;
+        }
+
+        ul#log {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul#log li::before{
+            font-family: "FontAwesome";
+            content: "\f00c";
+            display: inline-block;
+            padding-right: 10px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: green;
+        }
+        ul#log li:last-child::before{
+            font-family: "FontAwesome";
+            content: "\f013";
+            display: inline-block;
+            padding-right: 10px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #71a7d6;
+        }
+
+        ul#log li:last-child::after{
+            font-family: "FontAwesome";
+            content: "\f110";
+            display: inline-block;
+            padding-left: 10px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #71a7d6;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="loading"></div>
+    <div class="row">
+    
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Form</div>
+                <div class="panel-body">
+                    <form action="" method="post" enctype="multipart/form-data" class="form">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.file.label }}
+                            {{ form.file(class_="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.model.label }}
+                            {{ form.model(class_="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.language.label }}
+                            {{ form.language(class_="form-control") }}
+                        </div>
+
+                        <p>
+                            {% for error in form.file.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <button type="submit" class="btn btn-primary btn-lg" onclick="loading();"><i style="padding-right: 10px;"
+                                                                                class="fa fa-gears"></i>Start
+                            Process
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Files list</div>
+                <div class="panel-body">
+                    <ul id="log">
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+       setInterval(() => {
+            fetch('/log')
+                .then(res => res.text())
+                .then(res => {
+                    document.getElementById('log').innerHTML = res
+                }).catch(err => console.log(err))
+
+        }, 10000)
+    </script>
+
+    <script type="text/javascript">// <![CDATA[
+    function loading(){
+        $("#loading").show();
+    }
+    // ]]></script>
+
+{% endblock %}
