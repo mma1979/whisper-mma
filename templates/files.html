@@ -1,20 +1,58 @@
 {% extends 'base.html' %}
 {% block header %}
-	<h2>My Files</h2>
+    <h2>My Files</h2>
+    <style>
+        ul#files {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul#files li{
+            font-weight: bolder;
+            padding-top: 10px;
+        }
+
+       ul#files li::before{
+            font-family: "FontAwesome";
+            content: "\f15c";
+            display: inline-block;
+            padding-right: 10px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: dodgerblue;
+        }
+
+        ul#files li::after{
+            font-family: "FontAwesome";
+            content: "\f019";
+            display: inline-block;
+            padding-left: 10px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #71a7d6;
+        }
+    </style>
 {% endblock %}
 
 
 {% block content %}
-
-<ul>
-    {% for file in files %}
-        <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
-    {% endfor %}
-</ul>
+    <div class="panel panel-default">
+        <div class="panel-heading">Files</div>
+        <div class="panel-body">
+            <ul id="files">
+                {% for file in files %}
+                    <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
 
     <form action="{{ url_for('clean_workspace') }}" method="post" enctype="multipart/form-data" class="form">
         <button type="submit" class="btn btn-danger btn-lg" onclick="loading();">
-            <i style="padding-right: 10px;" class="fa fa-trash-o"></i> Clean workspace</button>
+            <i style="padding-right: 10px;" class="fa fa-trash-o"></i> Clean workspace
+        </button>
     </form>
 
 {% endblock %}
