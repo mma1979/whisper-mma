@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile-cpu
     ports:
       - 8000:80
     working_dir: /app

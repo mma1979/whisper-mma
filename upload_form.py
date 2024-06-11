@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from wtforms.fields.choices import SelectField
+from wtforms.fields.core import SelectField
 
 
 class UploadForm(FlaskForm):
