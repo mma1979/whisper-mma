@@ -5,6 +5,7 @@ channels:
   - nvidia
   - defaults
 dependencies:
+  - pip3
   - alabaster=0.7.12
   - anaconda-client=1.11.1
   - anaconda-navigator=2.4.0
