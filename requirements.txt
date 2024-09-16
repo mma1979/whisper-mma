@@ -1,11 +1,11 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 python-dotenv
-flask
+Werkzeug==2.2.2
+flask==2.2.2
 wtforms==2.2.1
-flask_wtf
+flask_wtf==1.1.1
 boto3
 minio
-wtforms
 torch
 torchaudio
 faster-whisper
