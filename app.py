@@ -40,7 +40,7 @@ def get_all_files():
 @app.route('/', methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
-    if 1==1:
+    if form.is_submitted():
         f = form.file.data
         model = form.model.data
         language = form.language.data

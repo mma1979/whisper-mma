@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3
+FROM pytorch/pytorch
 
 WORKDIR /app
 COPY --chmod=777 . .
