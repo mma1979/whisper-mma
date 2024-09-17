@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3
 
 WORKDIR /app
-COPY . .
+COPY --chmod=777 . .
 
 # RUN conda env create -f whisper-mma.yml
 # RUN conda activate whisper-mma
