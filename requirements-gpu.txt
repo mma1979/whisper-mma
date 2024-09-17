@@ -1,16 +1,17 @@
 --extra-index-url https://download.pytorch.org/whl/cu118
 python-dotenv
-flask
+Pyrebase4
+werkzeug==2.2.2
+flask==2.2.2
 wtforms==2.2.1
-flask_wtf
+flask_wtf==1.2.0
 boto3
 minio
-wtforms
-torch
-torchaudio
+torch==2.4.1
+torchaudio==2.4.1
 faster-whisper
 pyannote.audio
-tqdm
-sortedcontainers
-packaging
+tqdm==4.64.1
+sortedcontainers==2.4.0
+packaging==22.0
 pandas
