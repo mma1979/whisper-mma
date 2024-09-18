@@ -83,6 +83,11 @@ def clean_workspace():
     for obj in response['Contents']:
         s3.delete_object(Bucket=bucket_name, Key=obj['Key'])
 
+    # clean log file
+    log_file_path = os.path.join(app.root_path, 'logs', 'log.txt')
+    log_file = open(log_file_path, 'r+')
+    log_file.truncate(0)
+
     return redirect("/", code=302)
 
 
