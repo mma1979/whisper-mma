@@ -27,7 +27,12 @@ services:
     ports:
       - 80:80
     working_dir: /app
-
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
     volumes:
       - ".:/app"
     environment:
