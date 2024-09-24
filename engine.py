@@ -27,10 +27,11 @@ class WhipsMMAEngine:
                 output_file.write("%.2fs -> %.2fs %s\n" % (segment.start, segment.end, segment.text))
 
     def generate_rttm_file(self, filename):
-        Utils.log_info(f'Generating rttm file for {filename}')
+        Utils.log_info(f'Generating diarization file for {filename}')
         pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1",
             use_auth_token="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")
+        pipeline.to("gpu")
         audio_file = os.path.join("files", filename)
         diarization = pipeline(audio_file)
         with open(os.path.join('files', f"{filename}.rttm"), 'w') as output_file:
