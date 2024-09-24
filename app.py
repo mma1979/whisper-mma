@@ -47,7 +47,7 @@ def upload():
         compute_type = form.compute_type.data
         filename = secure_filename(f.filename)
         try:
-            f.save(os.path.join('files', filename))
+            f.save(os.path.join(app.root_path, 'files', filename))
             Utils.log_info(f'Uploading {filename}')
             s3.upload_fileobj(f, bucket_name, filename)
             engine = WhipsMMAEngine(s3, bucket_name, model, compute_type)
@@ -74,7 +74,7 @@ def download(filename):
 @app.route('/clean', methods=['POST'])
 def clean_workspace():
     # clean Local files
-    work_files = os.listdir('files')
+    work_files = os.listdir(os.path.join(app.root_path, 'files'))
     for file in work_files:
         os.remove(os.path.join('files', file))
 

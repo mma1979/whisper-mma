@@ -9,7 +9,7 @@ from utils import Utils
 
 
 class WhipsMMAEngine:
-    def __init__(self, s3, bucket_name, model="small", compute_type='int8'):
+    def __init__(self, s3, bucket_name, model="tiny", compute_type='int8'):
         self.model_size = model
         self.device = "cpu" if compute_type == 'int8' else "cuda"  # cuda for gpu | cpu
         self.compute_type = compute_type  # float16, int8_float16 for gpu | int8 for cpu
