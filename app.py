@@ -44,7 +44,7 @@ def upload():
         f = form.file.data
         model = form.model.data
         language = form.language.data
-        compute_type = form.compute_type.data
+        compute_type = 'float32'  # form.compute_type.data
         filename = secure_filename(f.filename)
         try:
             f.save(os.path.join(app.root_path, 'files', filename))
