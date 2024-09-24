@@ -1,4 +1,4 @@
-FROM pytorch/pytorch
+FROM pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime
 
 WORKDIR /app
 COPY --chmod=777 . .

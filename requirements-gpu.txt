@@ -1,4 +1,4 @@
---extra-index-url https://download.pytorch.org/whl/cu118
+--extra-index-url https://download.pytorch.org/whl/cu124
 python-dotenv
 Pyrebase4
 werkzeug==2.2.2
